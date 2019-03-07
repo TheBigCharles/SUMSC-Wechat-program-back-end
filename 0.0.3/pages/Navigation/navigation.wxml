@@ -1,0 +1,43 @@
+<!--pages/Navigation/navigasion.wxml-->
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+
+<!--顶部自制导航栏-->
+<view class="top0">
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/mine2.png" bindtap='onMine'></image>
+    <text class="topword">My activity</text>
+  </view>
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/signin2.png" bindtap='onSignin'></image>
+    <text class="topword">Sign in</text>
+  </view>
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/global2.png" bindtap='onSelect'></image>
+    <text class="topword">Select activities</text>
+  </view>
+</view>
+
+<!-- 加载中 -->
+<view wx:if="{{markers=='null'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/loading.png" bindtap='onSelect'></image>
+    <text class='error'>Loading</text>
+  </view>
+</view>
+<!-- 加载失败 -->
+<view wx:elif="{{markers=='fail'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/fail.png" bindtap='onSelect'></image>
+    <text class='error'>Failed to load</text>
+  </view>
+</view>
+
+<!-- 加载成功开始循环 -->
+<view wx:else="{{markers!=false}}">
+  <view class="navigation">
+    <text class='title'>SUMSC Navigation</text>
+    <map id="map" longitude="120.63972730" latitude="31.3087460" scale="19" markers="{{markers}}" show-location enable-rotate style="width: 100%; height: 65vh;"></map>
+    <image src='../../image/icon/weiruan.png' class='imgbt'></image>
+  </view>
+</view>

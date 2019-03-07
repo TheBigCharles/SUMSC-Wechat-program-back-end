@@ -1,0 +1,78 @@
+<!--pages/Enroll/enroll.wxml-->
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+
+<!-- 加载中 -->
+<view wx:if="{{data_list=='null'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/loading.png" bindtap='onSelect'></image>
+    <text class='error'>Loading</text>
+  </view>
+</view>
+<!-- 加载失败 -->
+<view wx:elif="{{data_list=='fail'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/fail.png" bindtap='onSelect'></image>
+    <text class='error'>Failed to load</text>
+  </view>
+</view>
+
+<!-- 加载成功开始循环 -->
+<view wx:else="{{data_list!=false}}">
+  <view class='container1'>
+    <view class="container2">
+      <image src="../Welcome/windows3.png" class="img000"></image>
+      <text class='title'>{{data_list.title}}</text>
+      <text class='text'>{{data_list.type}}参与项目</text>
+
+      <!--表单-->
+      <form bindsubmit='formSubmit'>
+        <view class='container3'>
+          <text class='text'>授权码 authorization code</text>
+          <input class='input' type='text' value='code' maxlength='10' confirm-type="next" adjust-position='{{true}}' name="code"></input>
+          <!--授权码暂定10位-->
+
+          <text class='text'>真实姓名 full name</text>
+          <input class='input' type='text' value='name' maxlength='5' confirm-type="next" adjust-position='{{true}}' name="name"></input>
+
+          <text class='text'>学号 Student ID</text>
+          <input class='input' type='text' value='Student ID' maxlength='15' password="true" confirm-type="next" adjust-position='{{true}}' name="id"></input>
+          <!--实验15位-->
+
+          <text class='text'>性别 gender</text>
+          <radio-group class="radio-group" name="gender">
+            <radio value='gril' color='rgb(0, 103, 184)' /> 女 Gril
+            <radio value='boy' color='rgb(0, 103, 184)' /> 男 Boy
+          </radio-group>
+
+          <text class='text'>年级 grade</text>
+          <radio-group class="radio-group" name="grade">
+            <radio value='freshman' color='rgb(0, 103, 184)' />大一
+            <radio value='Sophomore' color='rgb(0, 103, 184)' />大二
+            <radio value='Junior' color='rgb(0, 103, 184)' />大三
+            <radio value='Senior' color='rgb(0, 103, 184)' />大四
+          </radio-group>
+
+          <text class='text'>专业 major</text>
+          <input class='input' type='text' value='major' confirm-type="next" adjust-position='{{true}}' name="major"></input>
+
+          <text class='text'>邮箱 Email</text>
+          <input class='input' type='text' value='email' confirm-type="next" adjust-position='{{true}}' name="email"></input>
+
+          <text class='text'>电话联系方式 +86 Phone</text>
+          <input class='input' type='text' value='phone' maxlength='11' confirm-type="number" adjust-position='{{true}}' name="phone"></input>
+
+          <text class='text'>声明</text>
+          <view class='shengming'>
+            <switch color="red" type="checkbox" bindchange="switch1Change" />我(队长)已经详细阅读并严格遵守项目规则
+          </view>
+
+          <button class='button' form-type='submit'>
+            <image class="bimg" src="../../image/icon/weiruan.png"></image>
+            <text>确定</text>
+          </button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

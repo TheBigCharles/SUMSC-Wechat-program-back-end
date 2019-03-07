@@ -1,0 +1,175 @@
+/* pages/Enrollteam/enrollteam.wxss */
+
+page {
+  background-color: #282828;
+}
+
+.img000 {
+  width: 50vw;
+  height: 20vw;
+}
+
+.img00 {
+  margin-left: 8px;
+  width: 20vw;
+  height: 5vw;
+}
+
+.img0 {
+  margin-left: 8px;
+  width: 25vw;
+  height: 5vw;
+}
+
+.container2 {
+  width: 85vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.container1 {
+  width: 90vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 103, 184);
+}
+
+.container3 {
+  width: 80vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 3px solid rgb(0, 103, 184);
+  text-align: center;
+  align-items: center;
+}
+
+.container4 {
+  width: 80vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.title {
+  margin-top: 15rpx;
+  font-size: 65rpx;
+  color: black;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 100rpx;
+}
+
+.input {
+  width: 60%;
+  border-bottom: 1px solid rgb(0, 103, 184); /* 下边框*/
+  font-size: 28rpx;
+  color: grey;
+}
+
+.radio-group {
+  color: grey;
+  font-size: 28rpx;
+}
+
+.button {
+  width: 550rpx;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  color: white;
+  background-color: rgb(0, 103, 184);
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bimg {
+  margin-right: 20rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.shengming {
+  color: grey;
+  font-size: 25rpx;
+}
+
+.teamslider {
+  width: 100%;
+}
+
+.error {
+  margin-top: 30rpx;
+  font-size: 25rpx;
+  color: white;
+  text-align: center;
+}
+
+.error0 {
+  border-radius: 10rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(100, 100, 100);
+  margin: 50rpx 30rpx 50rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topicon {
+  width: 10vw;
+  height: 10vw;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+
+.error {
+  margin-top: 30rpx;
+  font-size: 25rpx;
+  color: white;
+  text-align: center;
+}
+
+.error0 {
+  border-radius: 10rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(100, 100, 100);
+  margin: 50rpx 30rpx 50rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topicon {
+  width: 10vw;
+  height: 10vw;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}

@@ -1,0 +1,103 @@
+<!--pages/SelectActive/selectactive.wxml-->
+
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+<view>
+  <!--垂直滚动/下面的小点/自动滚动-->
+  <!-- contain 加载中 -->
+  <view wx:if="{{contain_list=='null'}}">
+    <view class='error0'>
+      <image class="topicon" src="../../image/icon/loading.png" bindtap='onSelect'></image>
+      <text class='error'>Loading</text>
+    </view>
+  </view>
+  <!-- cotain 加载出错 -->
+  <view wx:elif="{{contain_list=='fail'}}">
+    <view class='error0'>
+      <image class="topicon" src="../../image/icon/fail.png" bindtap='onSelect'></image>
+      <text class='error'>Failed to load</text>
+    </view>
+  </view>
+  <!-- contain 加载成功开始循环 -->
+  <view wx:else="{{contain_list!=false}}">
+    <swiper vertical="{{false}}" indicator-dots="true" autoplay="true">
+      <view wx:for="{{contain_list}}" wx:for-item="xxx">
+        <swiper-item>
+          <image src="{{xxx.path}}"></image>
+        </swiper-item>
+      </view>
+    </swiper>
+  </view>
+
+  <!--顶部自制导航栏-->
+  <view class="top0">
+    <!--mage class="topicon" src="../../image/icon/global2.png"></image-->
+    <view class="top1">
+      <image class="topicon" src="../../image/icon/mine2.png" bindtap='onMine'></image>
+      <text class="topword">My activity</text>
+    </view>
+    <view class="top1">
+      <image class="topicon" src="../../image/icon/signin2.png" bindtap='onSignin'></image>
+      <text class="topword">Sign in</text>
+    </view>
+    <view class="top1">
+      <image class="topicon" src="../../image/icon/path2.png" bindtap='onNavigation'></image>
+      <text class="topword">Navigation</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{data_list=='null'}}">
+    <view class='error0'>
+      <image class="topicon" src="../../image/icon/loading.png" bindtap='onSelect'></image>
+      <text class='error'>Loading</text>
+    </view>
+  </view>
+  <!-- 加载失败 -->
+  <view wx:elif="{{data_list=='fail'}}">
+    <view class='error0'>
+      <image class="topicon" src="../../image/icon/fail.png" bindtap='onSelect'></image>
+      <text class='error'>Failed to load</text>
+    </view>
+  </view>
+
+  <!-- 加载成功开始循环 -->
+  <view wx:else="{{data_list!=false}}">
+    <!--循环体-->
+    <block wx:for="{{data_list}}" wx:for-item="xxx">
+      <view bindtap="onLeave" data-d_id_='{{xxx.d_id}}' class="info">
+        <view class="global-title">
+          <image src='windows.png' class="windows"></image>
+          <text class="date">{{xxx.date}} {{xxx.date_state}} {{xxx.type}}参与</text>
+        </view>
+        <view class='text_info'>
+          <text class="title">{{xxx.title}}</text>
+          <image wx:if="{{xxx.image_condition}}" class="image" src="{{xxx.image}}"></image>
+          <text class='text'>{{xxx.text}}</text>
+          <text class='remark'>{{xxx.remark}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>
+
+<image src='../../image/icon/weiruan.png' class='imgbt'></image>
+<view class='bottomtips0'>
+  <view class='bottomtips1'>
+    <view class='bottomtips2'>
+      <text class="bt_1">更多</text>
+      <text class='bt_2' bindtap='未配置'>SUMSC站点</text>
+      <text class='bt_2'>微软开发人员中心</text>
+      <text class='bt_2'>XXX的个人网站</text>
+
+    </view>
+    <view class='bottomtips2'>
+      <text class="bt_1">关于SUMSC</text>
+      <text class='bt_2'>招贤纳士</text>
+      <text class='bt_2'>隐私声明</text>
+      <text class='bt_2'>电脑义修</text>
+      <text class='bt_2'>联系我们</text>
+    </view>
+  </view>
+</view>

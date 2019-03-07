@@ -1,0 +1,19 @@
+<!--pages/Result/result.wxml-->
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+
+<view class='container1'>
+  <view class="container2">
+    <image src="../Welcome/windows3.png" class="img000"></image>
+    <text class='title'>xxx</text>
+    <text class='text'>反馈表单</text>
+
+  <view class='container3'>
+    <text class='text'>真实姓名 full name</text>
+    <text class='text2'>xxx</text>
+
+    <text class='text'>学号 Student ID</text>
+    <text class='text2'></text>
+  </view>
+  </view>
+</view>

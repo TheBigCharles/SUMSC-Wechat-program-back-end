@@ -1,0 +1,169 @@
+/* pages/ActivityInfo/activityinfo.wxss */
+
+page {
+  background-color: #282828;
+}
+
+.container {
+  padding: 0rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.headimg {
+  width: 100%;
+}
+
+.headline {
+  background-color: rgb(0, 103, 184);
+  border-radius: 50rpx;
+  flex-direction: row;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.headlineimg {
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+
+.headlinedetail {
+  margin-top: 15rpx;
+  color: white;
+  font-size: 40rpx;
+  vertical-align: middle;
+}
+
+.title {
+  margin-top: 15rpx;
+  font-size: 65rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.line0 {
+  width: 700rpx;
+  height: 2px;
+  background-color: white;
+  vertical-align: middle;
+  position: relative;
+  top: 5rpx;
+  bottom: 5rpx;
+  margin: 0 auto;
+  z-index: -99;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.text {
+  margin: 15rpx 30rpx 15rpx 30rpx;
+  color: grey;
+  font-size: 35rpx;
+  letter-spacing: 2rpx; /*文本间距*/
+  line-height: 40rpx; /*行高*/
+}
+
+.more {
+  margin-top: 15rpx;
+  color: white;
+  font-size: 40rpx;
+  margin-bottom: 15rpx;
+  background-color: rgb(183, 71, 42);
+  padding-top: 30px;
+  padding-bottom: 30px; /*下内边距*/
+  text-align: center;
+  border-radius: 20rpx;
+  margin: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.info {
+  color: grey;
+  font-size: 35rpx;
+  text-align: center;
+}
+
+.info_all {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  justify-content: center;
+  background-color: rgb(128, 57, 123);
+  padding-top: 30px;
+  padding-bottom: 30px; /*下内边距*/
+  border-radius: 20rpx;
+  margin: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.info_all2 {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50rpx;
+  margin-left: 50rpx;
+}
+
+.likeimg {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.img0 {
+  width: 300rpx;
+  height: 60rpx;
+}
+
+.img00 {
+  width: 240rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+}
+
+.container2 {
+  margin-top: 70rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button {
+  width: 350rpx;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  color: white;
+  background-color: rgb(33, 115, 70);
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bimg {
+  margin-right: 20rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.error {
+  margin-top: 30rpx;
+  font-size: 25rpx;
+  color: white;
+  text-align: center;
+}
+
+.error0 {
+  border-radius: 10rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(100, 100, 100);
+  margin: 50rpx 30rpx 50rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topicon {
+  width: 10vw;
+  height: 10vw;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}

@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/Welcome/welcome",
+    "pages/SelectActivity/selectactivity",
+    "pages/Outweb/outweb",
+    "pages/ActivityInfo/activityinfo",
+    "pages/Enroll/enroll",
+    "pages/Enrollteam/enrollteam",
+    "pages/Result/result",
+    "pages/Mine/mine",
+    "pages/Signin/signin",
+    "pages/Navigation/navigation"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#282828",
+    "navigationBarTitleText": "SUMSC",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#282828"
+  }
+}

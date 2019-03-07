@@ -1,0 +1,179 @@
+/* pages/SelectActive/selectactive.wxss */
+
+page {
+  background-color: #282828;
+}
+
+.img00 {
+  margin-left: 8px;
+  width: 20vw;
+  height: 5vw;
+}
+
+.img0 {
+  margin-left: 8px;
+  width: 25vw;
+  height: 5vw;
+}
+
+swiper {
+  width: 100%;
+  height: 500rpx;
+}
+
+swiper image {
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 103, 184);
+  margin: 30rpx 30rpx 35rpx 30rpx;
+  border: 5px solid rgb(0, 103, 184);
+  border-radius: 50rpx;
+  padding-bottom: 5px; /*下内边距*/
+}
+
+.globel-title {
+  vertical-align: middle;
+}
+
+.text_info {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25rpx;
+  background-color: white;
+  margin-top: 15rpx;
+}
+
+.windows {
+  margin-left: 15px;
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: middle; /*关联文本垂直居中*/
+}
+
+.date {
+  margin-left: 10px;
+  vertical-align: middle;
+  color: white;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.title {
+  margin-left: 20px;
+  vertical-align: middle;
+  color: black;
+  font-size: 55rpx;
+  font-weight: bold;
+}
+
+.image {
+  margin-left: 15px;
+  width: 100%;
+  margin: auto 0;
+  margin-bottom: 15px;
+}
+
+.text {
+  color: #282828;
+  font-size: 30rpx;
+  margin: 0rpx 20rpx 5px 20rpx; /* 上右下左*/
+  letter-spacing: 2rpx; /*文本间距*/
+  line-height: 40rpx; /*行高*/
+}
+
+.remark {
+  color: grey;
+  font-size: 25rpx;
+  margin: 0rpx 20rpx 5px 20rpx; /* 上右下左*/
+  letter-spacing: 2rpx; /*文本间距*/
+  line-height: 40rpx; /*行高*/
+}
+
+.bottomtips0 {
+  background-color: rgb(100, 100, 100);
+}
+
+.bottomtips1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bottomtips2 {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 75rpx;
+  margin-right: 75rpx;
+}
+
+.bt_1 {
+  font-size: 40rpx;
+  color: #282828;
+  font-weight: bold;
+}
+
+.bt_2 {
+  font-size: 27rpx;
+  color: #282828;
+  line-height: 60rpx; /*行高*/
+}
+
+.imgbt {
+  width: 15vw;
+  height: 15vw;
+  margin-left: 42.5vw;
+}
+
+.topicon{
+  width: 10vw;
+  height: 10vw;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+
+.top0{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(100, 100, 100);
+  justify-content: center;
+  align-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10rpx;
+  margin: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.top1{
+  display: flex;
+  flex-direction: column;
+}
+
+.topword{
+  font-size: 23rpx;
+  color: white;
+  text-align: center;
+}
+
+.error{
+  margin-top: 30rpx;
+  font-size:  25rpx;
+  color: white;
+  text-align: center;
+}
+
+.error0{
+  border-radius: 10rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(100, 100, 100);
+  margin: 50rpx 30rpx 50rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

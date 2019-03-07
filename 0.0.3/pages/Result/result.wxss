@@ -1,0 +1,75 @@
+/* pages/Result/result.wxss */
+
+page {
+  background-color: #282828;
+}
+
+.img000 {
+  width: 50vw;
+  height: 20vw;
+}
+
+.img00 {
+  margin-left: 8px;
+  width: 20vw;
+  height: 5vw;
+}
+
+.img0 {
+  margin-left: 8px;
+  width: 25vw;
+  height: 5vw;
+}
+
+.container2 {
+  width: 85vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.container1 {
+  width: 90vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 103, 184);
+}
+
+.container3 {
+  width: 80vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  border: 3px solid rgb(0, 103, 184);
+}
+
+.title {
+  margin-top: 15rpx;
+  font-size: 65rpx;
+  color: black;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-top: 35rpx;
+  margin-bottom: 20rpx;
+}
+.text2 {
+  font-size: 28rpx;
+}

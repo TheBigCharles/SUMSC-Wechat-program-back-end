@@ -1,0 +1,64 @@
+/* pages/Signin/signin.wxss */
+page {
+  background-color: #282828;
+}
+
+.img00 {
+  margin-left: 8px;
+  width: 20vw;
+  height: 5vw;
+}
+
+.img0 {
+  margin-left: 8px;
+  width: 25vw;
+  height: 5vw;
+}
+
+.topicon {
+  width: 10vw;
+  height: 10vw;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+
+.top0 {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(100, 100, 100);
+  justify-content: center;
+  align-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10rpx;
+  margin: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.top1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.topword {
+  font-size: 23rpx;
+  color: white;
+  text-align: center;
+}
+
+.error{
+  margin-top: 30rpx;
+  font-size:  25rpx;
+  color: white;
+  text-align: center;
+}
+
+.error0{
+  border-radius: 10rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(100, 100, 100);
+  margin: 50rpx 30rpx 0rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,35 @@
+/* pages/Welcome/welcome.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.img0{
+  margin-left: 8px;
+  width: 25vw;
+  height: 5vw;
+}
+.img00{
+  margin-left: 8px;
+  width: 20vw;
+  height: 5vw;
+}
+.img{
+  width: 24vw;
+  height: 32vw;
+  margin-top: 20vh;
+}
+.img2{
+  width: 10vw;
+  height: 10vw;
+  margin-top: 5vh;
+}
+.text{
+  color: #a5a5a5;
+  text-align: center;
+  margin-top: 0vh;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+page{
+  background-color: #282828;
+}

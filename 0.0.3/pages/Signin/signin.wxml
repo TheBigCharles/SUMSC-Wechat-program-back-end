@@ -1,0 +1,24 @@
+<!--pages/Signin/signin.wxml-->
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+
+<!--顶部自制导航栏-->
+<view class="top0">
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/mine2.png" bindtap='onMain'></image>
+    <text class="topword">My activity</text>
+  </view>
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/global2.png" bindtap='onSelect'></image>
+    <text class="topword">All Activities</text>
+  </view>
+  <view class="top1">
+    <image class="topicon" src="../../image/icon/path2.png" bindtap='onNavigation'></image>
+    <text class="topword">Navigation</text>
+  </view>
+</view>
+
+<view class='error0'>
+  <image class="topicon" src="../../image/icon/error.png" bindtap='onSelect'></image>
+  <text class='error'>暂未接入校园认证数据库</text>
+</view>

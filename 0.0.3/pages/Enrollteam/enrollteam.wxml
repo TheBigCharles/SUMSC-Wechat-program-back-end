@@ -1,0 +1,131 @@
+<!--pages/Enrollteam/enrollteam.wxml-->
+<image src="../Welcome/windows1.png" class="img0"></image>
+<image src="../Welcome/windows2.png" class="img00"></image>
+
+<!-- 加载中 -->
+<view wx:if="{{data_list=='null'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/loading.png" bindtap='onSelect'></image>
+    <text class='error'>Loading</text>
+  </view>
+</view>
+<!-- 加载失败 -->
+<view wx:elif="{{data_list=='fail'}}">
+  <view class='error0'>
+    <image class="topicon" src="../../image/icon/fail.png" bindtap='onSelect'></image>
+    <text class='error'>Failed to load</text>
+  </view>
+</view>
+
+<!-- 加载成功开始循环 -->
+<view wx:else="{{data_list!=false}}">
+  <view class='container1'>
+    <view class="container2">
+      <image src="../Welcome/windows3.png" class="img000"></image>
+      <text class='title'>{{data_list.title}}</text>
+      <text class='text'>{{data_list.type}}参与项目</text>
+
+      <form bindsubmit='formSubmit'>
+        <view class='container3'>
+          <text class='text'>授权码 authorization code</text>
+          <input class='input' type='text' value='code' maxlength='10' confirm-type="next" adjust-position='{{true}}' name="code"></input>
+          <!--授权码暂定10位-->
+
+          <text class='text'>队名 team name</text>
+          <input class='input' type='text' value='team name' maxlength='15' confirm-type="next" adjust-position='{{true}}' name="teamname"></input>
+
+          <text class='text'>队长真实姓名 captain full name</text>
+          <input class='input' type='text' value='name' maxlength='5' confirm-type="next" adjust-position='{{true}}' name="cname"></input>
+
+          <text class='text'>队长学号 captain ID</text>
+          <input class='input' type='text' value='captain ID' maxlength='15' password="true" confirm-type="next" adjust-position='{{true}}' name="cid"></input>
+          <!--实验15位-->
+
+          <text class='text'>队长性别 captain gender</text>
+          <radio-group class="radio-group" name="cgender">
+            <radio value='gril' color='rgb(0, 103, 184)' /> 女 Gril
+            <radio value='boy' color='rgb(0, 103, 184)' /> 男 Boy
+          </radio-group>
+
+          <text class='text'>队长年级 captain grade</text>
+          <radio-group class="radio-group" name="cgrade">
+            <radio value='freshman' color='rgb(0, 103, 184)' />大一
+            <radio value='Sophomore' color='rgb(0, 103, 184)' />大二
+            <radio value='Junior' color='rgb(0, 103, 184)' />大三
+            <radio value='Senior' color='rgb(0, 103, 184)' />大四
+          </radio-group>
+
+          <text class='text'>队长专业 captain major</text>
+          <input class='input' type='text' value='captain major' confirm-type="next" adjust-position='{{true}}' name="cmajor"></input>
+
+          <text class='text'>队长邮箱 captain Email</text>
+          <input class='input' type='text' value='captain email' confirm-type="next" adjust-position='{{true}}' name="cemail"></input>
+
+          <text class='text'>队长电话联系方式 captain +86 Phone</text>
+          <input class='input' type='text' value='phone' maxlength='11' confirm-type="number" adjust-position='{{true}}' name="cphone"></input>
+
+          <text class="text">团队人数 team size </text>
+          <view class="teamslider">
+            <slider bindchange="teamsizechange" name="teamsize" step="1" min="1" max="10" selected-color="rgb(0, 103, 184)" block-size='5' show-value/>
+          </view>
+        </view>
+
+        <!--循环体-->
+        <block wx:for="{{teamsizeInput-1}}" wx:for-item="xxx">
+          <!--wx:for-item="item" item是acti_data.js的子对象-->
+          <view class='container3'>
+            <text class='text' style='color:rgb(0, 103, 184)'>队员 {{xxx+2}}</text>
+
+            <text class='text'>真实姓名 full name</text>
+            <input class='input' type='text' value='name' maxlength='5' confirm-type="next" adjust-position='{{true}}' name="name{{xxx}}"></input>
+
+            <text class='text'>学号 Student ID</text>
+            <input class='input' type='text' value='Student ID' maxlength='15' password="true" confirm-type="next" adjust-position='{{true}}' name="id{{xxx}}"></input>
+            <!--实验15位-->
+
+            <text class='text'>性别 gender</text>
+            <radio-group class=" radio-group " name="gender{{xxx}}">
+              <radio value='gril' color='rgb(0, 103, 184)' /> 女 Gril
+              <radio value='boy' color='rgb(0, 103, 184)' /> 男 Boy
+            </radio-group>
+
+            <text class='text'>年级 grade</text>
+            <radio-group class="radio-group" name="grade{{xxx}}">
+              <radio value='freshman' color='rgb(0, 103, 184)' />大一
+              <radio value='Sophomore' color='rgb(0, 103, 184)' />大二
+              <radio value='Junior' color='rgb(0, 103, 184)' />大三
+              <radio value='Senior' color='rgb(0, 103, 184)' />大四
+            </radio-group>
+
+            <text class='text'>专业 major</text>
+            <input class='input' type='text' value='major' confirm-type=" next " adjust-position='{{true}}' name="major{{xxx}}">
+            </input>
+
+            <text class='text'>邮箱 Email</text>
+            <input class='input' type='text' value='email' confirm-type="next" adjust-position='{{true}}' name="email{{xxx}}"></input>
+
+            <text class='text'>电话联系方式 +86 Phone</text>
+            <input class='input' type='text' value='phone' maxlength='11' confirm-type=" number " adjust-position='{{true}}' name="phone{{xxx}}"></input>
+
+            <text class='text' style='color:rgb(0, 103, 184)'>member {{xxx+2}}</text>
+          </view>
+        </block>
+
+        <view class='container4'>
+          <text class='text'>声明</text>
+          <view class='shengming'>
+            <switch color="red" type="checkbox" bindchange="switch1Change" />全员已经详细阅读并严格遵守项目规则
+          </view>
+
+          <button class='button' form-type='submit'>
+            <image class="bimg" src="../../image/icon/weiruan.png"></image>
+            <text>确定</text>
+          </button>
+        </view>
+
+
+
+      </form>
+    </view>
+  </view>
+</view>

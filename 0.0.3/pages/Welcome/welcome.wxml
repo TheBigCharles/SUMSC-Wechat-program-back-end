@@ -1,0 +1,8 @@
+<!--pages/Welcome/welcome.wxml-->
+<image src="windows1.png" class="img0"></image>
+<image src="windows2.png" class="img00"></image>
+<view class='container'>
+  <image src="windows0.png" class="img"></image>
+  <image src="windowsloading.png" class="img2" animation="{{animation}}"></image>
+  <text class='text'>{{text}}</text>
+</view>
