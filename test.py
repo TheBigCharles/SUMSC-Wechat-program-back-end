@@ -12,9 +12,9 @@ if sys.getdefaultencoding() != defaultencoding:
 app = Flask(__name__)
 api = Api(app)
 
-db_name = ""
-db_address = "mongodb://192.168.131.248:27017"
-col_name = ""
+db_name = "SUMSC_file"
+db_address = "mongodb://118.126.66.3:27017"
+col_name = "application"
 
 mydict = {}
 
@@ -54,9 +54,11 @@ class Id_write(Resource):
 
 			'''数据库的写入和查重'''
 			if mydict[user_id] not in mycol.find():
+				mycol.insert_one(mydict[user_id])
 				#把mydict[user_id]写入数据库
 
-				if #若此真正写入数据库 
+				if mydict[user_id]  in mycol.find():
+					#若此真正写入数据库
 					res = 'SUMSC200'
 				else:
 					res = 'SUMSC500'
