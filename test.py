@@ -15,27 +15,29 @@ api = Api(app)
 db_name = "SUMSC_file"
 db_address = "mongodb://118.126.66.3:27017"
 col_name = "application"
+code_json = "./code.json"
 
 mydict = {
-	"user1": {"actname": args["actname"],
-                       "code": args["code"],
-                       "cemail": args["captain email"],
-                       "cgender": args["cgender"],
-                       "cgrade": args["cgrade"],
-                       "cid": args["captain ID"],
-                       "cmajor": args["captain major"],
-                       "cname": args["name"],
-                       "cphone": args["phone"],
-                       "teamname": args["team name"],
-                       "teamsize": args["teamsize"],
-                       "email" : args["email"],
-                    	"gender" : args["gender"],
-                    	"grade" : args["grade"],
-                    	"id" : args["Student ID"],
-                    	"major" : args["major"],
-                    	"name" : args["name"],
-                    	"phone": args["phone"]}
+	"user1": {"actname": "actname",
+                       "code": "code",
+                       "cemail": "cemail",
+                       "cgender": "cgender",
+                       "cgrade": "cgrade",
+                       "cid": "cid",
+                       "cmajor": "cmajor",
+                       "cname": "cname",
+                       "cphone": "cphone",
+                       "teamname": "teamname",
+                       "teamsize": "teamsize",
+                       "email" : "email",
+                    	"gender" : "gender",
+                    	"grade" : "grade",
+                    	"id" : "id",
+                    	"major" : "major",
+                    	"name" : "name",
+                    	"phone": "phone"}
         }
+
 
 
 class Id_write(Resource):
@@ -46,26 +48,29 @@ class Id_write(Resource):
         user_id = 'user{}'.format(user_id)
         mydict[user_id] = {"actname": args["actname"],
                        "code": args["code"],
-                       "cemail": args["captain email"],
+                       "cemail": args["cemail"],
                        "cgender": args["cgender"],
                        "cgrade": args["cgrade"],
-                       "cid": args["captain ID"],
-                       "cmajor": args["captain major"],
-                       "cname": args["name"],
-                       "cphone": args["phone"],
-                       "teamname": args["team name"],
+                       "cid": args["cid"],
+                       "cmajor": args["cmajor"],
+                       "cname": args["cname"],
+                       "cphone": args["cphone"],
+                       "teamname": args["teamname"],
                        "teamsize": args["teamsize"]}
 
-        new = json.loads("code.json")
+        with open(code_json, encoding='utf-8') as f:
+            new = json.load(f)
+
+        actname0 = mydict[user_id]["actname"]
 
         '''比对验证码'''
-        if mydict[user_id["code"]] == new["actname"]:
+        if mydict[user_id]["code"] == new[actname0]:
             for n in range(args["teamsize"]):
                 mydict[user_id] = {
                     "email" + "{}".format(n): args["email"],
                     "gender" + "{}".format(n): args["gender"],
                     "grade" + "{}".format(n): args["grade"],
-                    "id" + "{}".format(n): args["Student ID"],
+                    "id" + "{}".format(n): args["id"],
                     "major" + "{}".format(n): args["major"],
                     "name" + "{}".format(n): args["name"],
                     "phone" + "{}".format(n): args["phone"]}
