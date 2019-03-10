@@ -1,6 +1,6 @@
 import sys
 from flask import Flask,request,jsonify,abort
-from flask_restful import Api,Resource,reqparse
+from flask_restful import Api,Resource
 import json
 import pymongo
 
@@ -10,69 +10,63 @@ if sys.getdefaultencoding() != defaultencoding:
     sys.setdefaultencoding(defaultencoding)
 
 app = Flask(__name__)
-app.config['BUNDLE_ERRORS'] = True
 api = Api(app)
-#空的字符串，记得填内容
+
 db_name = ""
-db_address = ""
-aggregate_name = ""
+db_address = "mongodb://192.168.131.248:27017"
+col_name = ""
 
-mydict = {
-	'user1': {'name': '12345'},
-}#字典格式示例，用于接收数据，最后将录入数据库。
+mydict = {}
 
-parser = reqparse.RequestParser(bundle_errors=True)
-parser.add_argument('name',action='append',type=str,required=True)
-#class id_list()已改好，class id()用于查重。
-class Id(Resource):
-	@api.representation('application/json')
-	def post(self,info):
-		if info in mydict:
-			abort(404,message="user {} already exist".format(info))
-		args = parser.parse_args()
-		mydict[info] = {'name': args['name']}
-		return mydict[info],201
+class Id_write(Resource):
+	def post(self):
+        args = json.loads(request.get_data())
+        user_id = int(max(mydict.keys()).lstrip('user')) + 1
+        user_id = 'user{}' .format(user_id)
+        mydict[user_id] = {"actname": args["actname"],
+		"code": args["code"],
+		"cemail": args["captain email"],
+		"cgender": args["cgender"],
+		"cgrade": args["cgrade"],
+		"cid": args["captain ID"],
+		"cmajor": args["captain major"],
+		"cname": args["name"],
+		"cphone": args["phone"]
+		"teamname": args["team name"],
+		"teamsize": args["teamsize"]}
+		new = json.loads(code.json)
 
-    def get(self, info):
-        if info in INFOS:
-            abort(404)
-        args = request.values
-        new = {'name': args.get('name')}
-        mydict[info] = new
-        return new, 201
 
-class Id_list(Resource):
-	@api.representation('application/json')
-	def post(self,info):
-		args = parser.parse_args()
-		info = int(max(mydict.keys()).lstrip("user")) + 1
-		info = "user%i" % info
-		mydict[info] = {"name": args["name"]}
-		myclient = pymongo.MongoClient(db_address)
-		mydb = myclient[db_name]
-		dblist = myclient.list_database_names()
-		if db_name in dblist:
-			myaggregate = mydb[aggregate_name]
-			x = myaggregate.insert_one(mydict)
-		res='数据提交成功'
-		return jsonify({'msg': res})
+		'''比对验证码'''
+		if mydict[user_id[code]] == new[actname]:
+			for n in range(args["teamsize"]):
+				mydict[user_id] = {
+				"email"+"{}".format(n): args["email"],
+				"gender"+"{}".format(n) args["gender"],
+				"grade"+"{}".format(n): args["grade"],
+				"id"+"{}".format(n): args["Student ID"],
+				"major"+"{}".format(n): args["major"],
+				"name"+"{}".format(n): args["name"],
+				"phone"+"{}".format(n): args["phone"]}
+			myclient = pymongo.MongoClient(db_address)
+			mydb = myclient[db_name]
+			mycol = mydb[col_name]
 
-	def get(self,info):
-		args = request.values
-		info = int(max(mydict.keys()).lstrip("user")) + 1
-		info = "user%i" % info
-		mydict[info] = {"name": args["name"]}
-		myclient = pymongo.MongoClient(db_address)
-		mydb = myclient[db_name]
-		dblist = myclient.list_database_names()
-		if db_name in dblist:
-			myaggregate = mydb[aggregate_name]
-			x = myaggregate.insert_one(mydict)
-		res='数据提交成功'
-		return jsonify({'msg': res})
+			'''数据库的写入和查重'''
+			if mydict[user_id] not in mycol.find():
+				#把mydict[user_id]写入数据库
 
-api.add_resource(Id, '/<info>')
-api.add_resource(Id_list, '/list/<info>')
+				if #若此真正写入数据库 
+					res = 'SUMSC200'
+				else:
+					res = 'SUMSC500'
+			else:
+				res = 'SUMSC424'
+		else:
+			res = 'SUMSC403'
+		return jsonify({'status_code': res})
+
+api.add_resource(Id_write, '/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port='10086',debug=True)
