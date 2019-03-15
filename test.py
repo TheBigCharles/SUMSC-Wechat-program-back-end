@@ -39,10 +39,8 @@ mydict = {
         }
 
 
-
 class Id_write(Resource):
     def post(self):
-
         args = json.loads(request.get_data())
         user_id = int(max(mydict.keys()).lstrip('user')) + 1
         user_id = 'user{}'.format(user_id)
@@ -67,32 +65,32 @@ class Id_write(Resource):
         if mydict[user_id]["code"] == new[actname0]:
             for n in range(args["teamsize"]):
                 mydict[user_id] = {
-                    "email" + "{}".format(n): args["email"],
-                    "gender" + "{}".format(n): args["gender"],
-                    "grade" + "{}".format(n): args["grade"],
-                    "id" + "{}".format(n): args["id"],
-                    "major" + "{}".format(n): args["major"],
-                    "name" + "{}".format(n): args["name"],
-                    "phone" + "{}".format(n): args["phone"]}
+                    "email{}".format(n): args["email{}".format(n)],
+                    "gender{}".format(n): args["gender{}".format(n)],
+                    "grade{}".format(n): args["grade{}".format(n)],
+                    "id{}".format(n): args["id{}".format(n)],
+                    "major{}".format(n): args["major{}".format(n)],
+                    "name{}".format(n): args["name{}".format(n)],
+                    "phone{}".format(n): args["phone{}".format(n)]
+                    }
 
-
+            '''数据库的写入和查重'''
             myclient = pymongo.MongoClient(db_address)
             mydb = myclient[db_name]
             mycol = mydb[col_name]
-
-            '''数据库的写入和查重'''
             if mydict[user_id] not in mycol.find():
                 mycol.insert_one(mydict[user_id])
                 # 把mydict[user_id]写入数据库
-
                 if mydict[user_id] in mycol.find():
-                    # 若此真正写入数据库
+                    '''若此真正写入数据库'''
                     res = 'SUMSC200'
                 else:
                     res = 'SUMSC500'
             else:
+            	'''重复报名'''
                 res = 'SUMSC424'
         else:
+        	'''验证码错误'''
             res = 'SUMSC403'
         return jsonify({'status_code': res})
 
