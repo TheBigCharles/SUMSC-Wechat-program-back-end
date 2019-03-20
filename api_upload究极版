@@ -1,0 +1,150 @@
+from gevent import monkey
+
+monkey.patch_all()
+from flask import Flask, request, jsonify
+import ujson as json
+from qcloud_cos import CosConfig
+from qcloud_cos import CosS3Client
+import sys
+import logging
+import pymongo
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app, supports_credentials=True)
+mydict = {}
+db_name = "###"
+db_address = "mongodb://###"
+col_name = "###"
+
+# 上传云端配置
+logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+secret_id = '###'  # 替换为用户的 secretId
+secret_key = '###'  # 替换为用户的 secretKey
+region = '###'  # 替换为用户的 Region
+token = None  # 使用临时密钥需要传入 Token，默认为空，可不填
+scheme = 'https'  # 指定使用 http/https 协议来访问 COS，默认为 https，可不填
+config = CosConfig(Region=region, SecretId=secret_id, SecretKey=secret_key, Token=token, Scheme=scheme)
+
+# 获取客户端对象
+client = CosS3Client(config)
+BucketName = 'sumsc-file-1258573389'
+folder = "sumsc/"  # 云端文件夹名称，不需修改
+bucket_url = 'https://{}.cos.{}.myqcloud.com/'.format(BucketName, region)
+
+ALLOWED_EXTENSIONS = set(['txt', 'xlsx', 'doc', 'pdf', 'docx', 'xlsx', 'xls'])
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@app.route('/getname', methods=['POST'])
+def get_name():
+    # 获取名字
+    args = json.loads(request.get_data())
+    mydict.update(args)
+
+
+def uploadfile(f, name):
+    return client.put_object(
+        Bucket=BucketName,
+        Body=f,  # 可以直接把用户上传的文件作为body进行上传
+        Key=folder + name,
+        StorageClass='STANDARD',
+        EnableMD5=False,
+    )
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    # 文件储存
+
+    f = request.files['file']
+    try:
+        Id = request.form.get("id")
+        Name = request.form.get("name")
+    except Exception as e:
+        print(e)
+        return jsonify({"status": False, "msg": "Key Error"})
+    if Id == None or Id == '' or Name == None or Name == '':
+        return jsonify({"status": False, "msg": "Key Error"})
+
+    if f and allowed_file(f.filename):
+        # print(f.filename)
+        fname = f.filename
+        ext = fname.rsplit('.', 1)[1]  # 获取文件后缀
+        new_filename = Id + Name + '.' + ext
+
+        myclient = pymongo.MongoClient(db_address)
+        mydb = myclient[db_name]
+        mycol = mydb[col_name]
+        myquery = {"cid": Id, "cname": Name}
+        if not mycol.find_one(myquery):
+            return jsonify({"status": False, "msg": "No such user"})
+        try:
+            resp = uploadfile(f, new_filename)
+        except Exception as e:
+            print("Error ", e)
+            resp = False
+        if not resp:
+            return jsonify({"status": False, "msg": "Failed to upload"})
+
+        print("Upload Success")
+
+        res = bucket_url + folder + new_filename
+        # 数据库接入
+
+        data = mycol.find_one({"cid": Id})
+        if not data:
+            return jsonify({"status": False, "msg": "Record not Found"})
+        data["res"] = res
+        mycol.update_one({"cid": Id},
+                         {"$set": data})
+
+        '''
+        此处需要将 res 加入到数据库中对应的个人字段中
+        Id 对应 学号
+        Name 对应 姓名
+        '''
+        # 下面第82行需改写，用于检验res是否真正加入到了数据库中对应的个人字段中
+        myquery = {"cid": Id}
+        # print(mycol.find_one(myquery))
+        if res == mycol.find_one(myquery)['res']:
+            res = '报名成功'
+            return jsonify({"status": True, "msg": res})
+        else:
+            res = '报名失败，未写入数据库'
+            return jsonify({"status": False, "msg": res})
+    else:
+        res = '报名失败，未储存至云端'
+
+        return jsonify({"status": False, "msg": res})
+
+
+@app.route("/", methods=['GET', 'POST', 'OPTIONS'])
+def index():
+    if request.method == 'GET':
+        return 'GET OK'
+    if request.method == 'POST':
+        try:
+          data = json.loads(request.data)
+        except Exception as e:
+          return jsonify({"status":False,"msg":"Key Error"})
+        #print(data)
+        if data['step'] == 1:
+            scode = data['scode']
+            #print(scode)
+            if scode == "2019cgwr":
+                return jsonify({'message': 'ok'})
+            else:
+                return jsonify({'message': 'error'})
+        elif data['step'] == 2:
+            return jsonify({"message": 'error'})
+    if request.method == 'OPTIONS':
+        return 'OPTIONS OK'
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
